@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NeighborlyExchange.Core.Entities;
 using NeighborlyExchange.Infrastructure.Data;
+using NeighborlyExchange.Core.Interfaces;
+using NeighborlyExchange.Infrastructure.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +47,9 @@ builder.Services.AddAuthorization();
 
 // ── SignalR ────────────────────────────────────────────
 builder.Services.AddSignalR();
+
+
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 // ── CORS (allow React dev server) ──────────────────────
 builder.Services.AddCors(options =>
