@@ -14,6 +14,7 @@ dotnet add NeighborlyExchange.API package Swashbuckle.AspNetCore
 dotnet add NeighborlyExchange.API package Azure.Storage.Blobs
 dotnet add NeighborlyExchange.API package Azure.Extensions.AspNetCore.Configuration.Secrets
 dotnet add NeighborlyExchange.API package Microsoft.ApplicationInsights.AspNetCore
+dotnet add NeighborlyExchange.API package Microsoft.EntityFrameworkCore.Design
 
 echo "Installing utility packages..."
 dotnet add NeighborlyExchange.API package FluentValidation.AspNetCore

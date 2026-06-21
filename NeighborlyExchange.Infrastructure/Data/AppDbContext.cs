@@ -13,5 +13,10 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, int>
         base.OnModelCreating(builder);
         // We'll add HelpRequests, Reviews, Messages, etc. here
         // as we build out each feature in later weeks.
+        builder.Entity<AppUser>(entity =>
+        {
+            entity.Property(u => u.ReputationScore)
+                .HasPrecision(3, 2);
+        });
     }
 }
