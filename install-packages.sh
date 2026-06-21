@@ -5,11 +5,11 @@ echo "Installing Infrastructure packages..."
 dotnet add NeighborlyExchange.Infrastructure package Microsoft.EntityFrameworkCore
 dotnet add NeighborlyExchange.Infrastructure package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add NeighborlyExchange.Infrastructure package Microsoft.EntityFrameworkCore.Design
+dotnet add NeighborlyExchange.Infrastructure package Microsoft.AspNetCore.Identity.EntityFrameworkCore
 
 echo "Installing API packages..."
 dotnet add NeighborlyExchange.API package Microsoft.AspNetCore.Authentication.JwtBearer
 dotnet add NeighborlyExchange.API package Microsoft.AspNetCore.Identity.EntityFrameworkCore
-dotnet add NeighborlyExchange.API package Microsoft.AspNetCore.SignalR
 dotnet add NeighborlyExchange.API package Swashbuckle.AspNetCore
 dotnet add NeighborlyExchange.API package Azure.Storage.Blobs
 dotnet add NeighborlyExchange.API package Azure.Extensions.AspNetCore.Configuration.Secrets
