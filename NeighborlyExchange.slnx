@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="NeighborlyExchange.API/NeighborlyExchange.API.csproj" />
+  <Project Path="NeighborlyExchange.Core/NeighborlyExchange.Core.csproj" />
+  <Project Path="NeighborlyExchange.Infrastructure/NeighborlyExchange.Infrastructure.csproj" />
+  <Project Path="NeighborlyExchange.Tests/NeighborlyExchange.Tests.csproj" />
+</Solution>
