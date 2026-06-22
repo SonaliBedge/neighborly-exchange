@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, Button, TextField, Typography, Alert, Paper } from "@mui/material";
 import { login as loginApi } from "../api/auth";
@@ -14,7 +13,7 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setError("");
     setLoading(true);
