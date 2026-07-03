@@ -14,6 +14,7 @@ export default function CreateListing() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [availability, setAvailability] = useState("");
+  const [lookingFor, setLookingFor] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export default function CreateListing() {
         title,
         description,
         availability: availability || undefined,
+        lookingFor: lookingFor || undefined,
       });
       navigate("/listings");
     } catch (err: any) {
@@ -121,6 +123,15 @@ export default function CreateListing() {
             onChange={(e) => setAvailability(e.target.value)}
           />
 
+          {/* Looking for */}
+          <TextField
+            label="Looking for in return (optional)"
+            fullWidth
+            margin="normal"
+            placeholder="e.g. Help with gardening, cooking lessons, tech support..."
+            value={lookingFor}
+            onChange={(e) => setLookingFor(e.target.value)}
+/>
           {/* Actions */}
           <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
             <Button

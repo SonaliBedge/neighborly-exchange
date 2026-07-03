@@ -9,6 +9,7 @@ export interface CreateListingRequest {
   title: string;
   description: string;
   availability?: string;
+  lookingFor?: string;
 }
 
 export interface ListingResponse {
@@ -16,6 +17,7 @@ export interface ListingResponse {
   title: string;
   description: string;
   availability?: string;
+  lookingFor?: string;
   isActive: boolean;
   createdAt: string;
   skillName: string;

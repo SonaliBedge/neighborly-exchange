@@ -107,6 +107,13 @@ export default function Listings() {
                   </Typography>
                 )}
 
+                {/* Looking for */}
+                {listing.lookingFor && (
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    🤝 Looking for: <strong>{listing.lookingFor}</strong>
+                  </Typography>
+)}
+
                 {/* Offered by */}
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 2 }}>
                   <Typography variant="body2" color="text.secondary">

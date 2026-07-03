@@ -15,5 +15,6 @@ public class ListingResponseDto
     public int UserId { get; set; }
     public string UserFirstName { get; set; } = string.Empty;
     public string UserLastName { get; set; } = string.Empty;
+    public string? LookingFor { get; set; }
     public decimal UserReputationScore { get; set; }
 }

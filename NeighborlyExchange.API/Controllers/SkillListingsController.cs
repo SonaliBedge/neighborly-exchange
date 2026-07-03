@@ -34,6 +34,7 @@ public class SkillListingsController : ControllerBase
                 Title = l.Title,
                 Description = l.Description,
                 Availability = l.Availability,
+                LookingFor = l.LookingFor,
                 IsActive = l.IsActive,
                 CreatedAt = l.CreatedAt,
                 SkillName = l.Skill!.Name,
@@ -68,6 +69,7 @@ public class SkillListingsController : ControllerBase
             Title = dto.Title,
             Description = dto.Description,
             Availability = dto.Availability,
+            LookingFor = dto.LookingFor,
             IsActive = true,
             CreatedAt = DateTime.UtcNow
         };
@@ -92,7 +94,8 @@ public class SkillListingsController : ControllerBase
             UserId = userId,
             UserFirstName = user!.FirstName,
             UserLastName = user.LastName,
-            UserReputationScore = user.ReputationScore
+            UserReputationScore = user.ReputationScore,
+            LookingFor = listing.LookingFor
         });
     }
 }

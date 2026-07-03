@@ -6,4 +6,5 @@ public class CreateListingDto
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string? Availability { get; set; }
+    public string? LookingFor { get; set; }
 }
