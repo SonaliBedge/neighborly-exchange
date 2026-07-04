@@ -4,5 +4,5 @@ namespace NeighborlyExchange.Core.Interfaces;
 
 public interface ITokenService
 {
-    (string token, DateTime expiresAt) GenerateToken(AppUser user);
+    Task<(string token, DateTime expiresAt)> GenerateTokenAsync(AppUser user);
 }

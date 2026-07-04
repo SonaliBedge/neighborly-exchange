@@ -5,7 +5,15 @@ import { useAuth } from "../context/AuthContext";
 export default function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
-
+  const isAdmin = (() => {
+    const token = localStorage.getItem("token");
+    if (!token) return false;
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const roles = Array.isArray(payload.role) ? payload.role : payload.role ? [payload.role] : [];
+      return roles.includes("Admin");
+    } catch { return false; }
+  })();
   return (
     <AppBar position="static" elevation={1}>
       <Toolbar>
@@ -25,7 +33,19 @@ export default function Navbar() {
           </Button>
 
           {isAuthenticated ? (
-            <>
+            <>              
+              <Button color="inherit" onClick={() => navigate("/listings/my")}>
+                My Listings
+              </Button>
+              {isAdmin && (
+                <Button
+                  color="inherit"
+                  onClick={() => navigate("/admin")}
+                  sx={{ backgroundColor: "rgba(255,255,255,0.15)", borderRadius: 1 }}
+                >
+                  Admin
+                </Button>
+              )}
               <Button color="inherit" onClick={() => navigate("/listings/create")}>
                 Offer a Skill
               </Button>

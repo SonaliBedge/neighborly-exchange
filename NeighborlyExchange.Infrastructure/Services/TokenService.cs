@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using NeighborlyExchange.Core.Entities;
@@ -11,13 +12,15 @@ namespace NeighborlyExchange.Infrastructure.Services;
 public class TokenService : ITokenService
 {
     private readonly IConfiguration _config;
+    private readonly UserManager<AppUser> _userManager;
 
-    public TokenService(IConfiguration config)
+    public TokenService(IConfiguration config, UserManager<AppUser> userManager)
     {
         _config = config;
+        _userManager = userManager;
     }
 
-    public (string token, DateTime expiresAt) GenerateToken(AppUser user)
+    public async Task<(string token, DateTime expiresAt)> GenerateTokenAsync(AppUser user)
     {
         var jwtSettings = _config.GetSection("JwtSettings");
         var secretKey = jwtSettings["SecretKey"]
@@ -25,6 +28,8 @@ public class TokenService : ITokenService
 
         var expiryMinutes = int.Parse(jwtSettings["ExpiryMinutes"] ?? "60");
         var expiresAt = DateTime.UtcNow.AddMinutes(expiryMinutes);
+
+        var roles = await _userManager.GetRolesAsync(user);
 
         var claims = new List<Claim>
         {
@@ -34,6 +39,10 @@ public class TokenService : ITokenService
             new Claim("firstName", user.FirstName),
             new Claim("lastName", user.LastName),
         };
+
+        // Add role claims
+        foreach (var role in roles)
+            claims.Add(new Claim(ClaimTypes.Role, role));
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

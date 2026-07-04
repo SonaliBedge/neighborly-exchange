@@ -48,7 +48,7 @@ public class AuthController : ControllerBase
             return BadRequest(new { message = "Registration failed.", errors });
         }
 
-        var (token, expiresAt) = _tokenService.GenerateToken(user);
+        var (token, expiresAt) = await _tokenService.GenerateTokenAsync(user);
 
         return Ok(new AuthResponseDto
         {
@@ -72,7 +72,7 @@ public class AuthController : ControllerBase
         if (!result.Succeeded)
             return Unauthorized(new { message = "Invalid email or password." });
 
-        var (token, expiresAt) = _tokenService.GenerateToken(user);
+        var (token, expiresAt) = await _tokenService.GenerateTokenAsync(user);
 
         return Ok(new AuthResponseDto
         {

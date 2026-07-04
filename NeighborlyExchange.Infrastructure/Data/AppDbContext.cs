@@ -19,7 +19,24 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, int>
         {
             entity.Property(u => u.ReputationScore).HasPrecision(3, 2);
         });
-
+        
+        // Seed roles
+        builder.Entity<AppRole>().HasData(
+            new AppRole
+            {
+                Id = 1,
+                Name = "Admin",
+                NormalizedName = "ADMIN",
+                ConcurrencyStamp = "1"
+            },
+            new AppRole
+            {
+                Id = 2,
+                Name = "Member",
+                NormalizedName = "MEMBER",
+                ConcurrencyStamp = "2"
+            }
+        );
         builder.Entity<SkillListing>(entity =>
         {
             entity.HasOne(l => l.User)

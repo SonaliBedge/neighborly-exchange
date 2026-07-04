@@ -95,13 +95,15 @@ export default function Listings() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           sx={{ flex: 1 }}
-          InputProps={{
+          slotProps={{
+          input: {
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon sx={{ fontSize: 18, color: "text.disabled" }} />
               </InputAdornment>
             ),
-          }}
+          },
+        }}
         />
         {isAuthenticated && (
           <Button variant="contained" onClick={() => navigate("/listings/create")} sx={{ whiteSpace: "nowrap" }}>
