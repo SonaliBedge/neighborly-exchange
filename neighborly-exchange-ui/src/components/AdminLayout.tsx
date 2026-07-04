@@ -69,12 +69,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   </ListItemIcon>
                   <ListItemText
                     primary={item.label}
-                    primaryTypographyProps={{
-                      fontSize: 14,
-                      fontWeight: active ? 600 : 400,
-                      color: active ? "white" : "#DBEAFE",
+                    slotProps={{
+                        primary: {
+                        sx: {
+                            fontSize: 14,
+                            fontWeight: active ? 600 : 400,
+                            color: active ? "white" : "#DBEAFE",
+                        },
+                        },
                     }}
-                  />
+                    />
                 </ListItemButton>
               </ListItem>
             );
