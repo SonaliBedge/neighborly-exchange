@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminListings from "./pages/admin/AdminListings";
 import AdminSkills from "./pages/admin/AdminSkills";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -23,9 +24,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
           <Route path="/listings" element={<Listings />} />
           <Route path="/listings/create" element={<CreateListing />} />
           <Route path="/listings/my" element={<MyListings />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/listings/edit/:id" element={<EditListing />} />
           <Route path="/admin" element={
             <AdminRoute><AdminDashboard /></AdminRoute>
