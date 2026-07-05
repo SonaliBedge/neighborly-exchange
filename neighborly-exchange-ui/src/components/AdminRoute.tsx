@@ -12,11 +12,16 @@ export default function AdminRoute({ children }: { children: React.ReactNode }) 
 
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
-    const roles: string[] = Array.isArray(payload.role)
-      ? payload.role
-      : payload.role
-      ? [payload.role]
-      : [];
+
+    // ASP.NET Core serializes ClaimTypes.Role as a full URI
+    const roleKey = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+    const rawRole = payload[roleKey] ?? payload.role;
+
+    const roles: string[] = Array.isArray(rawRole)
+    ? rawRole
+    : rawRole
+    ? [rawRole]
+    : [];
 
     if (!roles.includes("Admin")) return <Navigate to="/" replace />;
   } catch {

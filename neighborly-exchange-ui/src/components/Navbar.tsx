@@ -6,14 +6,17 @@ export default function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
   const isAdmin = (() => {
-    const token = localStorage.getItem("token");
-    if (!token) return false;
-    try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      const roles = Array.isArray(payload.role) ? payload.role : payload.role ? [payload.role] : [];
-      return roles.includes("Admin");
-    } catch { return false; }
+  const token = localStorage.getItem("token");
+  if (!token) return false;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    const roleKey = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+    const rawRole = payload[roleKey] ?? payload.role;
+    const roles = Array.isArray(rawRole) ? rawRole : rawRole ? [rawRole] : [];
+    return roles.includes("Admin");
+  } catch { return false; }
   })();
+  
   return (
     <AppBar position="static" elevation={1}>
       <Toolbar>

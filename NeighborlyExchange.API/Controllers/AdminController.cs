@@ -50,6 +50,20 @@ public class AdminController : ControllerBase
 
         return Ok(stats);
     }
+    // POST /api/admin/users/{id}/make-admin
+    [HttpPost("users/{id}/make-admin")]
+    public async Task<IActionResult> MakeAdmin(int id)
+    {
+        var user = await _userManager.FindByIdAsync(id.ToString());
+        if (user == null) return NotFound();
+
+        var alreadyAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+        if (alreadyAdmin)
+            return BadRequest(new { message = "User is already an Admin." });
+
+        await _userManager.AddToRoleAsync(user, "Admin");
+        return Ok(new { message = $"{user.Email} is now an Admin." });
+    }
 
     // ── Users ──────────────────────────────────────────────
     [HttpGet("users")]
